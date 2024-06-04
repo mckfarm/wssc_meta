@@ -1,0 +1,3 @@
+sample_name,forward,reverse
+CAN_1,/projects/b1052/mckenna/wssc_meta/raw_reads/WS_1_S6_R1_001.fastq.gz,/projects/b1052/mckenna/wssc_meta/raw_reads/WS_1_S6_R2_001.fastq.gz
+CAN_2,/projects/b1052/mckenna/wssc_meta/raw_reads/WS_2_S7_R1_001.fastq.gz,/projects/b1052/mckenna/wssc_meta/raw_reads/WS_2_S7_R2_001.fastq.gz
