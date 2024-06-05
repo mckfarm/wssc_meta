@@ -103,7 +103,7 @@ rule prokka:
     threads: 4
     resources:
         mem="30G",
-        time="05:00:00"
+        time="01:00:00"
     shell:
         """
         prokka {input} --outdir {params.outdir} --prefix {params.prefix} --metagenome --force --cpus {threads}
