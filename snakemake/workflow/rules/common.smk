@@ -44,6 +44,10 @@ def get_rules(wildcards):
         all_rules = all_rules + directory(expand(
             "results/gtdbtk/{sample}/", sample=sample_sheet["sample_name"]))
 
+        all_rules = all_rules + expand(
+            "results/prokka/{sample}/aggregate.txt", sample=sample_sheet["sample_name"],
+        )
+
 
     return all_rules
 
