@@ -54,7 +54,7 @@ def get_rules(wildcards):
         )
 
         all_rules = all_rules + expand(
-            "results/diamond_contigs/{sample}/{sample}_uniref90.tsv", sample=sample_sheet["sample_name"],
+            "results/diamond_contigs/{sample}/{sample}_uniref100_denit.tsv", sample=sample_sheet["sample_name"],
         )   
 
     return all_rules
