@@ -23,7 +23,7 @@ rule diamond_denit:
     output:
         "results/diamond_contigs/{sample}/{sample}_uniref100_denit.tsv"
     params:
-        db_loc = "/projects/p31629/resources/denit_genes/uniref100_denit"
+        db_loc = "/projects/p31629/resources/uniref100_denit"
     threads: 10
     conda: "../envs/diamond.yaml"
     resources:
@@ -34,3 +34,40 @@ rule diamond_denit:
         diamond blastp -d {params.db_loc} -q {input} -o {output} \
         --very-sensitive --iterate --verbose --threads {threads} 
         """
+
+rule pileup_stats:
+    input:
+        "results/coverage/{sample}/{sample}.sorted.bam"
+    output:
+        pileup = "results/pileup/{sample}/{sample}.pileup.txt",
+        rpkm = "results/pileup/{sample}/{sample}.rpkm.txt",
+        basecov = "results/pileup/{sample}/{sample}.basecov.txt"
+    threads: 4
+    resources:
+        mem="50G",
+        time="01:00:00"
+    shell:
+        """
+        module load bowtie2/2.4.5
+        module load samtools/1.10.1
+        module load sambamba/0.8.2
+
+        /home/mmf8608/programs/bbmap_39.01/pileup.sh -Xmx50g \
+        in={input} out={output.pileup} rpkm={output.rpkm} basecov={output.basecov}
+        """
+
+rule pileup_summary:
+    input:
+        flagstat = "results/coverage/{sample}/{sample}.flagstat.tsv",
+        depth = "results/coverage/{sample}/{sample}.depth.txt"
+    output:
+        flagstat = "results/pileup/{sample}/{sample}.flagstat.tsv",
+        depth = "results/pileup/{sample}/{sample}.depth.txt"
+    shell:
+        """
+        cp {input.flagstat} {output.flagstat}
+        cp {input.depth} {output.depth}
+        """
+
+
+
