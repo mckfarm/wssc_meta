@@ -53,7 +53,7 @@ def get_rules(wildcards):
             "results/pyrodigal/{sample}/cds_proteins.faa", sample=sample_sheet["sample_name"])
 
         all_rules = all_rules + expand(
-            "results/diamond_contigs/{sample}/{sample}_uniref100_denit.tsv", sample=sample_sheet["sample_name"])   
+            "results/diamond_contigs/{sample}/{sample}_uniref90_denit.tsv", sample=sample_sheet["sample_name"])   
 
         all_rules = all_rules + expand(
             "results/pileup/{sample}/{sample}.pileup.txt", sample=sample_sheet["sample_name"])
