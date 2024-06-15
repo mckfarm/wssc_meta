@@ -23,7 +23,7 @@ rule diamond_denit:
     output:
         "results/diamond_contigs/{sample}/{sample}_uniref90_denit.tsv"
     params:
-        db_loc = "/projects/p31629/resources/denit_uniref90"
+        db_loc = "/projects/b1052/mckenna/resources/diamond/denit_uniprotkb"
     threads: 10
     conda: "../envs/diamond.yaml"
     resources:
